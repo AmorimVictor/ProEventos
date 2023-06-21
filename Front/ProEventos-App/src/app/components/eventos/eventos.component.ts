@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventoService } from '../services/evento.service';
-import { Evento } from '../models/Evento';
+import { EventoService } from '../../services/evento.service';
+import { Evento } from '../../models/Evento';
 
 import { TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
@@ -23,6 +23,8 @@ export class EventosComponent implements OnInit {
   public margemImagem = 2;
   public exibirImagem = true;
   private filtroListado = '';
+
+  titleEvento = "Evento";
 
   public get filtroLista() : string{
     return this.filtroListado;
