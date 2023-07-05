@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
     }, formOptions);
   }
 
-  //Conveniente para pega1r um formField apenas com a letra F
+  //Conveniente para pegar um formField apenas com a letra F
   get f(): any { return this.form.controls; }
 
   onSubmit(): void {
@@ -50,8 +50,8 @@ export class PerfilComponent implements OnInit {
   }
 
   public resetForm(event: any): void {
-    console.log(event);
-    console.log(event.preventDefault());
+    //event.preventDefault() é usado para cancelar o comportamento padrão de um elemento.
+    //Se usado em um formulário, ele impede o envio (submit), recarregar a página.
     event.preventDefault();
     this.form.reset();
   }
