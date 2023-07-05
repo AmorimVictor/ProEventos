@@ -28,7 +28,7 @@ import { EventoListaComponent } from './components/eventos/evento-lista/evento-l
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -66,7 +66,8 @@ import { RegistrationComponent } from './components/user/registration/registrati
       preventDuplicates: true,
       progressBar: true
 
-    })
+    }),
+    ReactiveFormsModule
 
   ],
   providers: [EventoService],

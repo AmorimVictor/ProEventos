@@ -1,48 +1,107 @@
 <div class="row mt-4">
+  <div class="col-md-6 d-none d-md-block" style="height: 450px">
+    <div class="text-center col-md-12 my-auto side-heder">
+      <h1>Cadastro de Usuário</h1>
+      <img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px" />
+    </div>
+  </div>
 
-	<div class="col-md-6 d-none d-md-block" style="height: 450px;">
-		<div class="text-center col-md-12 my-auto side-heder">
-			<h1>Cadastro de Usuário</h1>
-			<img src="../../../../assets/registerImage.png" class="my-4" alt="" width="400px">
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<form class="p-1">
+  <div class="col-md-6">
+    <form [formGroup]="form" class="p-1">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label>Primeiro Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" />
+          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" formControlName="firstName"
+            [ngClass]="{              ' is-invalid': f.firstName.errors && f.firstName.touched
+            }" />
+          <div *ngIf="f.firstName.errors?.required" class="invalid-feedback">
+            Primeiro nome obrigatório
+          </div>
+          <div *ngIf="f.firstName.errors?.minlength" class="invalid-feedback">
+            Primeiro nome deve conter min 3 caracters
+          </div>
+          <div *ngIf="f.firstName.errors?.maxlength" class="invalid-feedback">
+            Primeiro nome deve conter max 20 caracters
+          </div>
         </div>
         <div class="form-group col-sm-6">
           <label>Último nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Último nome" />
+          <input formControlName="lastName" [ngClass]="{
+              'is-invalid': f.lastName.errors && f.lastName.touched
+            }" type="text" class="form-control" placeholder="Insira o Último nome" />
+          <div *ngIf="f.lastName.errors?.required" class="invalid-feedback">
+            Ultimo nome obrigatório
+          </div>
+          <div *ngIf="f.lastName.errors?.minlength" class="invalid-feedback">
+            Ultimo nome deve conter min 3 caracters
+          </div>
+          <div *ngIf="f.lastName.errors?.maxlength" class="invalid-feedback">
+            Ultimo nome deve conter max 20 caracters
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="">Email:</label>
-        <input class="form-control" type="text" placeholder="Insira o Nome Completo" />
+        <label>Email:</label>
+        <input formControlName="email" [ngClass]="{
+            'is-invalid': f.email.errors && f.email.touched
+          }" class="form-control" type="text" placeholder="Insira o Nome Completo" />
+        <div *ngIf="f.email.errors?.required" class="invalid-feedback">
+          E-mail obrigatório
+        </div>
+        <div *ngIf="f.email.errors?.email" class="invalid-feedback">
+          E-mail deve ser válido!
+        </div>
       </div>
       <div class="form-group">
-        <label for="">Usuario:</label>
-        <input class="form-control" type="text" placeholder="Insira o nome de Usuário" />
+        <label>Usuario:</label>
+        <input formControlName="user" [ngClass]="{
+            'is-invalid': f.user.errors && f.user.touched
+          }" class="form-control" type="text" placeholder="Insira o nome de Usuário" />
+        <div *ngIf="f.user.errors?.required" class="invalid-feedback">
+          Usuário obrigatório
+        </div>
+        <div *ngIf="f.user.errors?.minlength" class="invalid-feedback">
+          Usuário deve conter min 3 caracters
+        </div>
+        <div *ngIf="f.user.errors?.maxlength" class="invalid-feedback">
+          Usuário deve conter max 20 caracters
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
-          <label for="">Senha:</label>
-          <input class="form-control" type="password" placeholder="Digite uma Senha" />
+          <label>Senha:</label>
+          <input formControlName="password" [ngClass]="{
+              'is-invalid': f.password.errors && f.password.touched
+            }" class="form-control" type="password" placeholder="Digite uma Senha" />
+          <div *ngIf="f.password.errors?.required" class="invalid-feedback">
+            Senha obrigatória
+          </div>
+          <div *ngIf="f.password.errors?.minlength" class="invalid-feedback">
+            Senha deve conter min 7 caracters
+          </div>
+          <div *ngIf="f.password.errors?.maxlength" class="invalid-feedback">
+            Senha deve conter max 50 caracters
+          </div>
         </div>
         <div class="form-group col-sm-6">
-          <label for="">Confirmar Senha:</label>
-          <input class="form-control" type="password" placeholder="Confirme a Senha" />
+          <label>Confirmar Senha:</label>
+          <input formControlName="checkPassword" [ngClass]="{
+              'is-invalid': f.checkPassword.errors && f.checkPassword.touched
+            }" class="form-control" type="password" placeholder="Confirme a Senha" />
+          <div *ngIf="f.checkPassword.errors?.required" class="invalid-feedback">
+            Confirmar senha é obrigatório.
+          </div>
+          <div *ngIf="f.checkPassword.errors?.mustMatch" class="invalid-feedback">
+            Senhas devem ser iguais.
+          </div>
         </div>
       </div>
       <div class="form-row p-1 mb-3">
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <input type="checkbox" class="custom-control-input" id="customCheck1" />
           <label class="custom-control-label">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
         </div>
       </div>
@@ -55,11 +114,9 @@
       </div>
       <div class="form-row">
         <div class="form-group col-12">
-          <a class="btn btn-link btn-block">
-            Já sou Cadastrado
-          </a>
+          <a class="btn btn-link btn-block"> Já sou Cadastrado </a>
         </div>
       </div>
     </form>
-	</div>
+  </div>
 </div>
