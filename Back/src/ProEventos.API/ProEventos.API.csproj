@@ -22,5 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ProEventos.Application\ProEventos.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProEventos.Application\ProEventos.Application.csproj" />
+  </ItemGroup>
 
 </Project>
