@@ -29,6 +29,11 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+defineLocale('pt-br', ptBrLocale);
 
 
 @NgModule({
@@ -67,7 +72,9 @@ import { ReactiveFormsModule } from '@angular/forms';
       progressBar: true
 
     }),
-    ReactiveFormsModule
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule,
 
   ],
   providers: [EventoService],
