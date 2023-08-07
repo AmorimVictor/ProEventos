@@ -14,9 +14,9 @@ namespace ProEventos.Application.Services
     {
 
         private readonly IGeralPersitence _geralPersistence;
-        private readonly IEventosPersistence _eventoPersistence;
+        private readonly IEventoPersistence _eventoPersistence;
         private readonly IMapper _mapper;
-        public EventoService(IGeralPersitence geralPersistence, IEventosPersistence eventoPersistence, IMapper mapper)
+        public EventoService(IGeralPersitence geralPersistence, IEventoPersistence eventoPersistence, IMapper mapper)
         {
             _geralPersistence = geralPersistence;
             _eventoPersistence = eventoPersistence;

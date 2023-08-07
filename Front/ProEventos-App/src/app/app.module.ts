@@ -33,8 +33,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { LoteService } from './services/lote.service';
 defineLocale('pt-br', ptBrLocale);
-
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 @NgModule({
   declarations: [
@@ -75,9 +76,9 @@ defineLocale('pt-br', ptBrLocale);
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
-
+    CurrencyMaskModule
   ],
-  providers: [EventoService],
+  providers: [EventoService, LoteService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

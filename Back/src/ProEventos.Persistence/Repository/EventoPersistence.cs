@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -9,11 +7,11 @@ using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Persistence.Repository
 {
-    public class EventosPersistence : IEventosPersistence
+    public class EventoPersistence : IEventoPersistence
     {
         private readonly ProEventosContext _context;
 
-        public EventosPersistence(ProEventosContext context)
+        public EventoPersistence(ProEventosContext context)
         {
             _context = context;
             

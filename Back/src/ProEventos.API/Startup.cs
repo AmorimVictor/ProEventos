@@ -5,20 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ProEventos.Application;
 using ProEventos.Application.Contratos;
-using ProEventos.Persistence;
 using ProEventos.Persistence.Contextos;
 using ProEventos.Persistence.Contratos;
-using AutoMapper;
 using System;
-using Microsoft.Extensions.FileProviders;
-using System.IO;
-using Microsoft.AspNetCore.Http;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Identity;
-using System.Text;
-using System.Collections.Generic;
 using ProEventos.Application.Services;
 using ProEventos.Persistence.Repository;
 
@@ -40,15 +30,22 @@ namespace ProEventos.API
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
-            services.AddControllers().AddNewtonsoftJson( x => x.SerializerSettings.ReferenceLoopHandling = 
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
             Newtonsoft.Json.ReferenceLoopHandling.Ignore
 
             );
 
-             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IEventoService, EventoService>();
-            services.AddScoped<IEventosPersistence, EventosPersistence>();
+            services.AddScoped<ILoteService, LoteService>();
+
+
+            services.AddScoped<IEventoPersistence, EventoPersistence>();
             services.AddScoped<IGeralPersitence, GeralPersitence>();
+            services.AddScoped<ILotePersistence, LotePersistence>();
+
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
@@ -65,8 +62,8 @@ namespace ProEventos.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProEventos.API v1"));
             }
-           
-            app.UseHttpsRedirection();            
+
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

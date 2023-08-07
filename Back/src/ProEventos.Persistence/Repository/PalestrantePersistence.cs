@@ -13,8 +13,7 @@ namespace ProEventos.Persistence.Repository
 
         public PalestrantePersistence(ProEventosContext context)
         {
-            _context = context;
-            
+            _context = context;            
         }
         
         public async Task<Palestrante> GetPalestranteByIdAsync(int palestranteId, bool includeEventos)
