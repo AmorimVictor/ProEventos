@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Evento } from '../models/Evento';
 import { take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 // providedIn: 'root'
 export class EventoService {
-  baseURL = 'https://localhost:5001/api/eventos';
+  baseURL = environment.apiURL + 'api/eventos';
 
   [key: string]: any; //Necessário utilizar para que ao chamar esse evento service,
   //fosse possível passar de forma dinâmica qual seria a ação que executaria passando uma string.
@@ -47,6 +48,17 @@ export class EventoService {
   public deleteEvento(id: number): Observable<any> {
     return this.http
       .delete(`${this.baseURL}/${id}`)
+      .pipe(take(1));
+  }
+
+  postUpload(eventoId: number, file: File): Observable<Evento>{
+
+    const fileToUpload = file[0] as File;
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
+
+    return this.http
+      .post<Evento>(`${this.baseURL}/upload-image/${eventoId}`, formData)
       .pipe(take(1));
   }
 
